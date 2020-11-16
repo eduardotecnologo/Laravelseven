@@ -1,7 +1,7 @@
 <!-- need to remove -->
 <li class="nav-item">
-    <a href="{{ route('home') }}" class="nav-link active">
+    <a href="{{ route('categories.index') }}" class="nav-link active">
         <i class="nav-icon fas fa-home"></i>
-        <p>Home</p>
+        <p>Categorias</p>
     </a>
 </li>

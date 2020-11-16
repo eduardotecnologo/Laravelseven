@@ -3,6 +3,13 @@
 @section('title','Editar Categoria')
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li><a href="{{ route('admin')}}">Dashboard &nbsp/ &nbsp</a></li>
+            <li><a href="{{ route('categories.index') }}" class="breadcrumb-item active"> Categorias / &nbsp</a></li>
+            <li><a href=""> Produtos</a></li>
+        </ol>
+    </nav>
     <h3>
         Editar Categoria: {{$category->title}}
     </h3>

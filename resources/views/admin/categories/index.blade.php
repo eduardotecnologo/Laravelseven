@@ -6,19 +6,27 @@
            style="margin-top: 10px;
                   margin-bottom: 10px;"
            class="btn btn-success">Nova Categoria</a>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li><a href="{{ route('admin')}}">Dashboard &nbsp/ &nbsp</a></li>
+                <li><a href="{{ route('categories.index') }}" class="breadcrumb-item active"> Categorias / &nbsp</a></li>
+                <li><a href=""> Produtos</a></li>
+            </ol>
+        </nav>
         <form action="{{route('categories.search')}}" method="POST" class="form form-inline" style="margin-bottom: 10px;">
             @csrf
-            <input type="text" name="title" class="form-control" placeholder="Pesquisar Título" style="margin-right: 10px;">
-            <input type="text" name="url" class="form-control" placeholder="Pesquisar URL" style="margin-right: 10px;">
-            <input type="text" name="description" class="form-control" placeholder="Pesquisar Descrição" style="margin-right:12px;">
+            <input type="text" name="title" class="form-control" placeholder="Pesquisar Título" value="{{ $data['title'] ?? '' }}" style="margin-right: 10px;">
+            <input type="text" name="url" class="form-control" placeholder="Pesquisar URL" value="{{ $data['url'] ?? '' }}" style="margin-right: 10px;">
+            <input type="text" name="description" class="form-control" placeholder="Pesquisar Descrição" value="{{ $data['description'] ?? '' }}" style="margin-right:12px;">
             <button class="btn btn-success">Buscar</button>
         </form>
-        @if(isset($search))
-            <p><strong>Resultado para: </strong>{{ $search }}</p>
+        @if(isset($data))
+            <a href="{{ route('categories.index') }}">(X) Limpar pesquisa:</a>
         @endif
 
     </div>
             <div class="box-body">
+                @include('admin.includes.alerts')
                 <table class="table">
                     <thead class="thead-dark">
                     <tr>
@@ -48,6 +56,12 @@
                     @endforeach
                     </tbody>
                 </table>
+                @if(isset($data))
+                    {!! $categories->appends($data)->links() !!}
+                @else
+                    {!! $categories->links() !!}
+                @endif
+
             </div>
 @endsection
 

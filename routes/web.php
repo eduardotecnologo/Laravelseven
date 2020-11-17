@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+Route::resource('admin/products','Admin\ProductController');
 Route::get('admin', function(){
 
 })->name('admin');

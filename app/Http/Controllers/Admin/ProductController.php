@@ -3,10 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateProductFormRequest;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    protected $product;
+    public function __construct(Product $product){
+        $this->product = $product;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        // Mostra o produto e a categoria que ele está vinculada
+        $products = $this->product->with('category')->get();
+        return view('admin.products.index', compact('products'));
     }
 
     /**
@@ -24,18 +33,28 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        // Populando as categorias
+        $categories = Category::all();
+        return view('admin.products.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreUpdateProductFormRequest;  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateProductFormRequest $request)
     {
-        //
+        // $category = Category::find($request->category_id);
+        // $product = $category->products()->create($request->all());
+
+        // Modelo mais elegante
+        $product = $this->product->create($request->all());
+        return redirect()
+            ->route('products.index')
+            ->withSuccess('Produto Cadastrado!!!');
+        // dd($product);
     }
 
     /**

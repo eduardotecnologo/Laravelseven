@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['name','url','description','price'];
+    protected $fillable = ['category_id','name','url','description','price'];
+
+    // Relacionamento inverso
+    public function category(){
+    return $this->belongsTo(Category::class);
+    }
 }

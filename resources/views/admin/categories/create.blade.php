@@ -9,10 +9,9 @@
         </ol>
     </nav>
     <div class="container-fluid">
-        <h3>
+        <label>
             Cadastrar nova Categoria
-        </h3>
-        <hr>
+        </label>
     </div>
     <div class="box-body">
         @if($errors->any())

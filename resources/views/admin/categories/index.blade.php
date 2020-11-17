@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <a href="{{route('categories.create')}}"
-           style="margin-top: 10px;
+           style="margin-top:10px;
                   margin-bottom: 10px;"
            class="btn btn-success">Nova Categoria</a>
         <nav aria-label="breadcrumb">
